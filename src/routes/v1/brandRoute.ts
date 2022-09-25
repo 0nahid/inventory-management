@@ -13,5 +13,6 @@ const router: Router = Router();
  */
 
 router.route("/").get(brandRouter.getAllBrand).post(brandRouter.createBrand);
+router.route("/:id").get(brandRouter.getSingleBrand);
 
 export default router;

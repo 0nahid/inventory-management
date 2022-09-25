@@ -14,6 +14,31 @@ const getAllBrand = async (req: Request, res: Response) => {
     res.status(500).send({
       message: "Internal Server Error",
       status: 500,
+      error: error,
+    });
+  }
+};
+
+const getSingleBrand = async (req: Request, res: Response) => {
+  try {
+    const brand = await BrandModel.findById(req.params.id);
+    if (!brand) {
+      res.status(404).send({
+        message: "Brand not found",
+        status: 404,
+      });
+    } else {
+      res.status(200).send({
+        message: "Brand",
+        status: 200,
+        data: brand,
+      });
+    }
+  } catch (error) {
+    res.status(500).send({
+      message: "Internal Server Error",
+      status: 500,
+      error: error,
     });
   }
 };
@@ -29,13 +54,14 @@ const createBrand = async (req: Request, res: Response) => {
     });
   } catch (error) {
     res.status(500).send({
-      message: error,
+      message: "Internal Server Error",
       status: 500,
-
+      error: error,
     });
   }
 };
 export const brandRouter = {
   getAllBrand,
   createBrand,
+  getSingleBrand,
 };
