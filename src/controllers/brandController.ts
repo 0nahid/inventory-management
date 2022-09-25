@@ -60,8 +60,38 @@ const createBrand = async (req: Request, res: Response) => {
     });
   }
 };
+
+// update a brand
+const updateBrand = async (req: Request, res: Response) => {
+  try {
+    const brand = await BrandModel.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    if (!brand) {
+      res.status(404).send({
+        message: "Brand not found",
+        status: 404,
+      });
+    } else {
+      res.status(200).send({
+        message: "Brand updated",
+        status: 200,
+        data: brand,
+      });
+    }
+  } catch (error) {
+    res.status(500).send({
+      message: "Internal Server Error",
+      status: 500,
+      error: error,
+    });
+  }
+};
+
 export const brandRouter = {
   getAllBrand,
   createBrand,
   getSingleBrand,
+  updateBrand,
 };

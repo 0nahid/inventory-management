@@ -13,6 +13,15 @@ const router: Router = Router();
  */
 
 router.route("/").get(brandRouter.getAllBrand).post(brandRouter.createBrand);
-router.route("/:id").get(brandRouter.getSingleBrand);
+
+/***
+ * /api/v1/brand/:id:
+ * get: returns a single brand
+ * patch: update a single brand
+ */
+router
+  .route("/:id")
+  .get(brandRouter.getSingleBrand)
+  .patch(brandRouter.updateBrand);
 
 export default router;
