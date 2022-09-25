@@ -9,17 +9,17 @@ app.use(cors());
 app.use(express.json());
 
 /* here will be all the imports routes */
+import brandRoute from "./routes/v1/brandRoute";
 import productRoute from "./routes/v1/productRoute";
-import testRoute from "./routes/v1/test";
-
 /* here will be the all the routes */
 app.get("/", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 /* Here is the User Routes */
-app.use("/api/v1/test", testRoute);
+
 app.use("/api/v1/products", productRoute);
+app.use("/api/v1/brand", brandRoute);
 
 // 404 response
 app.all("*", (req: Request, res: Response) => {

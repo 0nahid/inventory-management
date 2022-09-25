@@ -19,11 +19,12 @@
   "dependencies": {
     "@types/color": "^3.0.3",
     "@types/mongoose": "^5.11.97",
-    "@types/validator": "^13.7.6",
+    "@types/validator": "^13.7.7",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
-    "typescript": "^4.8.2"
+    "typescript": "^4.8.2",
+    "validator": "^13.7.0"
   }
 }
