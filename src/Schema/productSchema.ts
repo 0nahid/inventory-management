@@ -1,6 +1,6 @@
 import { Schema } from "mongoose";
 import validator from "validator";
-const { ObjectId } = Schema.Types;
+const ObjectId = Schema.Types.ObjectId;
 const productSchema = new Schema(
   {
     name: {

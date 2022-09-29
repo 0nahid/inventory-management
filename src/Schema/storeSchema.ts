@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-const { ObjectId } = Schema.Types;
+const ObjectId = Schema.Types.ObjectId;
 const StoreSchema = new Schema(
   {
     name: {

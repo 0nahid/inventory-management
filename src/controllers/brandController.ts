@@ -4,7 +4,8 @@ import { BrandModel } from "../models/brandModel";
 /* for get all the users */
 const getAllBrand = async (req: Request, res: Response) => {
   try {
-    const brands = await BrandModel.find().select("-products -suppliers -__v");
+    const brands = await BrandModel.find()
+      .select("-products -suppliers -__v");
     // const brands = await BrandModel.find();
     res.status(200).send({
       message: "All brands",
@@ -22,7 +23,8 @@ const getAllBrand = async (req: Request, res: Response) => {
 
 const getSingleBrand = async (req: Request, res: Response) => {
   try {
-    const brand = await BrandModel.findById(req.params.id);
+    // const brand = await BrandModel.findById(req.params.id);
+    const brand = await BrandModel.findById(req.params.id)
     if (!brand) {
       res.status(404).send({
         message: "Brand not found",
