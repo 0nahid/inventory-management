@@ -28,7 +28,32 @@ const getAllStores = async (req: Request, res: Response) => {
   });
 };
 
+// get single store
+const getSingleStore = async (req: Request, res: Response) => {
+  try {
+    const store = await Store.findById(req.params.id);
+    if (!store) {
+      res.status(404).json({
+        status: "fail",
+        message: "Store not found",
+      });
+    } else {
+      res.status(200).json({
+        status: "success",
+        message: "Single store",
+        data: store,
+      });
+    }
+  } catch (error) {
+    res.status(400).json({
+      status: "fail",
+      message: error,
+    });
+  }
+};
+
 export const storeRouter = {
   createStore,
   getAllStores,
+  getSingleStore,
 };
