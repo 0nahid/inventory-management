@@ -4,7 +4,8 @@ import { BrandModel } from "../models/brandModel";
 /* for get all the users */
 const getAllBrand = async (req: Request, res: Response) => {
   try {
-    const brands = await BrandModel.find().select("-products -suppliers");
+    const brands = await BrandModel.find().select("-products -suppliers -__v");
+    // const brands = await BrandModel.find();
     res.status(200).send({
       message: "All brands",
       status: 200,
