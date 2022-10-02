@@ -26,7 +26,7 @@ const productSchema = new Schema(
     },
     imageUrls: {
       type: [String],
-      required: true,
+      // required: true,
       validate: {
         // get the value of the imageUrls field by loop and validate it using validator.isURL
         validator: function (v: string[]) {

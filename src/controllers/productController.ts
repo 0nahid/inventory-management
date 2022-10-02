@@ -8,9 +8,16 @@ const createProduct = async (req: Request, res: Response) => {
     const product = await ProductModel.create(req.body);
     const { _id: productId, brand } = product;
     // update the brand with the product id
-    await BrandModel.findByIdAndUpdate(brand, {
-      $push: { products: productId },
-    });
+    await BrandModel.updateOne(
+      {
+        name: product.brand?.name,
+      },
+      {
+        $push: {
+          products: productId,
+        },
+      }
+    );
 
     res.status(201).json({
       status: "success",
