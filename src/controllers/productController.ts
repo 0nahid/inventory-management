@@ -36,7 +36,24 @@ const getAllProducts = async (req: Request, res: Response) => {
   });
 };
 
+// file upload
+const uploadProductImage = async (req: Request, res: Response) => {
+  try {
+    res.status(200).json({
+      status: "success",
+      message: "Image uploaded",
+      data: req.files,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "fail",
+      message: error,
+    });
+  }
+};
+
 export const productsRouter = {
   createProduct,
   getAllProducts,
+  uploadProductImage,
 };
