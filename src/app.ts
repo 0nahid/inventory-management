@@ -12,6 +12,8 @@ app.use(express.json());
 import brandRoute from "./routes/v1/brandRoute";
 import productRoute from "./routes/v1/productRoute";
 import storeRoute from "./routes/v1/storeRoute";
+import supplierRoute from "./routes/v1/supplierRoute";
+
 /* here will be the all the routes */
 app.get("/", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
@@ -22,6 +24,7 @@ app.get("/", (req: Request, res: Response) => {
 app.use("/api/v1/products", productRoute);
 app.use("/api/v1/brand", brandRoute);
 app.use("/api/v1/store", storeRoute);
+app.use("/api/v1/supplier", supplierRoute);
 
 // 404 response
 app.all("*", (req: Request, res: Response) => {
