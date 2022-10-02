@@ -25,3 +25,30 @@
 - `GET /api/brand/:id` - Get a single brand
 - `POST /api/brand` - Create a brand
 - `Patch /api/brand/:id` - Update a brand
+
+> ### Example
+
+> Create a brand
+
+```
+"name": "",
+"description": "",
+"email": "",
+"website": "",
+```
+
+> Create a product
+
+```
+{
+  "name": "",
+  "description": "",
+  "unit": "",
+  "imageUrls": ["","","",""],
+  "category": "",
+  "brand": {
+    "name": "brand_name",
+    "id": "brand_id"
+  }
+}
+```
