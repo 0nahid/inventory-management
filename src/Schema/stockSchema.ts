@@ -14,7 +14,7 @@ const stockSchema = new Schema(
       trim: true, // trim whitespace
       maxLength: [100, "Product name cannot exceed 100 characters"],
       minLength: [3, "Product name cannot be less than 3 characters"],
-      unique: true, // unique
+      // unique: true, // unique
     },
     description: {
       type: String,
@@ -119,6 +119,11 @@ const stockSchema = new Schema(
         ref: "Supplier",
         require: true,
       },
+    },
+    sellCount: {
+      type: Number,
+      default: 0,
+      min: [0, "Sell Count Cannot be less than 0"],
     },
   },
   {

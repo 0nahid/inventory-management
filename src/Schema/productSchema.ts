@@ -55,27 +55,6 @@ const productSchema = new Schema(
         require: true,
       },
     },
-    // createdAt: {
-    //   type: Date,
-    //   default: Date.now,
-    // },
-    // updatedAt: {
-    //   type: Date,
-    //   default: Date.now,
-    // },
-    // supplier: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: "Supplier",
-    // },
-    // catagories: [
-    //   {
-    //     name: {
-    //       type: String,
-    //       required: true,
-    //     },
-    //     _id: Schema.Types.ObjectId,
-    //   },
-    // ],
   },
   {
     timestamps: true,

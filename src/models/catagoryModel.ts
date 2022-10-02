@@ -1,4 +1,4 @@
 import mongoose from "mongoose";
 import CatagorySchema from "../Schema/catagorySchema";
 
-export const catagoryModel = mongoose.model("Catagory", CatagorySchema);
+export const CatagoryModel = mongoose.model("Catagory", CatagorySchema);

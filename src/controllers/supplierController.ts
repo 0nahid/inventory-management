@@ -27,9 +27,7 @@ const getSingleSupplier = async (req: Request, res: Response) => {
   try {
     // const brand = await BrandModel.findById(req.params.id);
     const filter = { _id: req.params.id };
-    const supplier = await SupplierModel.findOne(filter)
-      .populate("products", "-supplier -__v -createdAt -updatedAt")
-      .select(" -__v");
+    const supplier = await SupplierModel.findOne(filter);
     if (!supplier) {
       res.status(404).send({
         message: "Supplier not found",
