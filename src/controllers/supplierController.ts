@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { BrandModel } from "../models/brandModel";
 
 import { SupplierModel } from "../models/supplierModel";
 
@@ -53,6 +54,13 @@ const getSingleSupplier = async (req: Request, res: Response) => {
 const createSupplier = async (req: Request, res: Response) => {
   try {
     const supplier = await SupplierModel.create(req.body);
+    // update the brand with the supplier id
+    const { _id: supplierId, brand } = supplier;
+    await BrandModel.updateOne(
+      { _id: brand?.id },
+      { $push: { suppliers: supplierId } }
+    );
+
     res.status(201).send({
       message: "Supplier created",
       status: 201,
