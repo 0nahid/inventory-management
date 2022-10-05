@@ -18,6 +18,24 @@ const createStock = async (req: Request, res: Response) => {
   }
 };
 
+// get all stock
+const getAllStock = async (req: Request, res: Response) => {
+  try {
+    const stock = await StockModel.find();
+    res.status(200).json({
+      status: "success",
+      message: "All Stock",
+      data: stock,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "fail",
+      message: error,
+    });
+  }
+};
+
 export const stockRouter = {
   createStock,
+  getAllStock,
 };
