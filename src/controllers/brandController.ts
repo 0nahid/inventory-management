@@ -25,7 +25,8 @@ const getSingleBrand = async (req: Request, res: Response) => {
     // const brand = await BrandModel.findById(req.params.id);
     const filter = { _id: req.params.id };
     const brand = await BrandModel.findOne(filter)
-      .populate("products suppliers.id", "-brand -__v -createdAt -updatedAt")
+      .populate("products", "-brand -__v -createdAt -updatedAt")
+      .populate("suppliers")
       .select(" -__v");
     if (!brand) {
       res.status(404).send({

@@ -73,7 +73,11 @@ const getAllStock = async (req: Request, res: Response) => {
 // get a single stock
 const getSingleStock = async (req: Request, res: Response) => {
   try {
-    const stock = await StockModel.findById(req.params.id).populate("store.id");
+    const stock = await StockModel.findById(req.params.id)
+      .populate("brand.id")
+      .populate("suppiliedBy.id")
+      .populate("store.id");
+
     res.status(200).json({
       status: "success",
       message: "Single Stock",
@@ -90,4 +94,5 @@ const getSingleStock = async (req: Request, res: Response) => {
 export const stockRouter = {
   createStock,
   getAllStock,
+  getSingleStock,
 };
