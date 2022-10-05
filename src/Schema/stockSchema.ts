@@ -29,22 +29,13 @@ const stockSchema = new Schema(
           "Please select the correct unit for product, it must be either kg or litre or pcs or bag or box or dozen",
       },
     },
-    imageUrls: {
-      type: [String],
-      required: true,
-      validate: {
-        // get the value of the imageUrls field by loop and validate it using validator.isURL
-        validator: function (v: string[]) {
-          for (let i = 0; i < v.length; i++) {
-            if (!validator.isURL(v[i])) {
-              return false;
-            }
-          }
-          return true;
-        },
-        message: "Please provide a valid image URL",
+    imageURLs: [
+      {
+        type: String,
+        required: true,
+        validate: [validator.isURL, "Please provide valid url(s)"],
       },
-    },
+    ],
     price: {
       type: Number,
       required: true,
