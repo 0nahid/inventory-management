@@ -29,16 +29,16 @@ const SupplierSchema = new Schema(
         ref: "Brand",
       },
     },
-    contactNumber: {
-      type: String,
-      required: true,
-      trim: true,
-      unique: true,
-      validate: [
-        validator.isMobilePhone,
-        "Please provide a valid phone number",
-      ],
-    },
+    contactNumber: [
+      {
+        type: String,
+        required: true,
+        validate: [
+          validator.isMobilePhone,
+          "Please provide a valid contact number",
+        ],
+      },
+    ],
     emergencyNumber: {
       type: String,
       required: true,
