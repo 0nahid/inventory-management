@@ -10,11 +10,11 @@ app.use(express.json());
 
 /* here will be all the imports routes */
 import brandRoute from "./routes/v1/brandRoute";
+import catagoryRoute from "./routes/v1/catagoryRoute";
 import productRoute from "./routes/v1/productRoute";
+import stockRoute from "./routes/v1/stockRoute";
 import storeRoute from "./routes/v1/storeRoute";
 import supplierRoute from "./routes/v1/supplierRoute";
-import catagoryRoute from "./routes/v1/catagoryRoute";
-
 
 /* here will be the all the routes */
 app.get("/", (req: Request, res: Response) => {
@@ -28,6 +28,7 @@ app.use("/api/v1/brand", brandRoute);
 app.use("/api/v1/store", storeRoute);
 app.use("/api/v1/supplier", supplierRoute);
 app.use("/api/v1/catagory", catagoryRoute);
+app.use("/api/v1/stock", stockRoute);
 
 // 404 response
 app.all("*", (req: Request, res: Response) => {
