@@ -52,3 +52,32 @@
   }
 }
 ```
+
+> Create a product Stock
+
+```
+{
+  "productId": "",
+  "name": "",
+  "description": "",
+  "imageURLs": [ "","","","" ],
+  "unit": "",
+  "price": "",
+  "quantity": ,
+  "status": "",
+  "category": "",
+  "brand": {
+    "name": "",
+    "id": ""
+  },
+  "store": {
+    "name": "",
+    "id": ""
+  },
+  "suppiliedBy": {
+    "name": "",
+    "id": ""
+  },
+  "sellCount":
+}
+```

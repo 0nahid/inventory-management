@@ -53,7 +53,8 @@ const getSingleSupplier = async (req: Request, res: Response) => {
 const createSupplier = async (req: Request, res: Response) => {
   try {
     const supplier = await SupplierModel.create(req.body);
-
+    console.log(supplier);
+    
     /**
      * add the supplier to the brand
      */
