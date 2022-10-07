@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const productController_1 = require("../../controllers/productController");
+const uploader_1 = require("../../middlewares/uploader");
+const router = (0, express_1.Router)();
+router.get("/", productController_1.productsRouter.getAllProducts);
+router.post("/", productController_1.productsRouter.createProduct);
+router.post("/upload", uploader_1.uploader.array("image"), productController_1.productsRouter.uploadProductImage);
+exports.default = router;
