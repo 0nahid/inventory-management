@@ -1,13 +1,16 @@
 import { Request, Response } from "express";
+import { ObjectId } from "mongoose";
 import { StockModel } from "../models/stockSchema";
-
 interface queries {
   sortBy?: string;
   limit?: number;
   page?: number;
   fields?: string;
   skip?: number;
+  id?: ObjectId;
 }
+type ids = ObjectId | string;
+
 // create a new stock
 const createStock = async (req: Request, res: Response) => {
   try {
@@ -77,6 +80,21 @@ const getSingleStock = async (req: Request, res: Response) => {
       .populate("brand.id")
       .populate("suppiliedBy.id")
       .populate("store.id");
+
+    // const id: ids = req.params.id;
+    //  pipeline => aggregation framework
+    // const stock = await StockModel.aggregate([
+    //   { $match: { _id: id } },
+    //   {
+    //     $lookup: {
+    //       from: "brands",
+    //       localField: "brand.id",
+    //       foreignField: "_id",
+    //       as: "brand",
+    //     },  
+    //   },
+    // ]);
+    console.log(req.params.id);
 
     res.status(200).json({
       status: "success",
