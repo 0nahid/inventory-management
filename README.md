@@ -81,3 +81,14 @@
   "sellCount":
 }
 ```
+
+```
+{
+  "email": "ex@gmail.com",
+  "password": "@123qweASD",
+  "role": "admin",
+  "firstName": "Ex",
+  "lastName": "Text",
+  "phoneNumber": "88016********"
+}
+```
