@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongoose';
+import { generateToken } from './../utils/tokenGenerate';
 import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import { User } from "../models/userModel";
@@ -31,10 +33,17 @@ const signUp = async (req: Request, res: Response) => {
 // login an user
 const login = async (req: Request, res: Response) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).send({
+        message: "Email and password required",
+        status: 400,
+      });
+    }
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).send({
-        message: "User not found",
+        message: "User not found with this email, please signup first",
         status: 404,
       });
     }
@@ -48,9 +57,22 @@ const login = async (req: Request, res: Response) => {
         status: 401,
       });
     }
+    if (user.status === "inactive") {
+      return res.status(401).send({
+        message: "Your account is inactive",
+        status: 401,
+      });
+    }
+    
+    // generate token
+    const token = generateToken(user);
+    const { password: pass, ...data } = user._doc;
     res.status(200).json({
       status: "success",
-      data: user,
+      data: {
+        data,
+        token
+      },
     });
   } catch (error) {
     res.status(500).send({

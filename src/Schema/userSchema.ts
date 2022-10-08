@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import { ObjectId, Schema } from "mongoose";
 import PasswordValidator from "password-validator";
 import validator from "validator";
 
@@ -17,6 +17,7 @@ export interface IUser extends Document {
   passWordChangedAt: Date;
   passWordResetToken: string;
   passWordResetExpires: Date;
+  _doc: any;
 }
 
 const UserSchema = new Schema<IUser>(

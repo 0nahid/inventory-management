@@ -91,7 +91,7 @@ const getSingleStock = async (req: Request, res: Response) => {
     //       localField: "brand.id",
     //       foreignField: "_id",
     //       as: "brand",
-    //     },  
+    //     },
     //   },
     // ]);
     console.log(req.params.id);
