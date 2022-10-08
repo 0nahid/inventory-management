@@ -7,7 +7,6 @@ const passwordSchema = new PasswordValidator().min(8).has().uppercase().has().lo
 export interface IUser extends Document {
   email: string;
   password: string;
-  confirmPassword: string;
   role: string;
   firstName: string;
   lastName: string;
@@ -39,16 +38,7 @@ const UserSchema = new Schema<IUser>(
         message: (props: any) => `${props.value} is not a valid password!`,
       },
     },
-    confirmPassword: {
-      type: String,
-      required: true,
-      validate: {
-        validator: function (confirmPassword: string): boolean {
-          return confirmPassword === this.password;
-        },
-        message: (props: any) => `${props.value} is not a valid password!`,
-      }
-    },
+    
     role: {
       type: String,
       required: true,
