@@ -19,6 +19,6 @@ const createUser = async (req: Request, res: Response) => {
   }
 };
 
-export const userRoute = {
+export const userRouter = {
   createUser,
 };
