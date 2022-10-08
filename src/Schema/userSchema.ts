@@ -77,7 +77,6 @@ const UserSchema = new Schema<IUser>(
     },
     status: {
       type: String,
-      required: true,
       enum: {
         values: ["active", "inactive", "suspended"],
         message: "Status must be either active or inactive",

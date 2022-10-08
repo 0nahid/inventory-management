@@ -4,12 +4,7 @@ import { User } from "../models/userModel";
 // create an user
 const createUser = async (req: Request, res: Response) => {
   try {
-    const user = await User.create(req.body);
-    res.status(201).send({
-      message: "User created",
-      status: 201,
-      data: user,
-    });
+    const password = req.body.password;
   } catch (error) {
     res.status(500).send({
       message: "Internal Server Error",
