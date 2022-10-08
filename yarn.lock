@@ -877,6 +877,13 @@ jws@^3.2.2:
     jwa "^1.4.1"
     safe-buffer "^5.0.1"
 
+jwt-promisify@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/jwt-promisify/-/jwt-promisify-1.1.5.tgz#c13560360ee776548c0fbbd2a8d10681f46fb3f8"
+  integrity sha512-q17UTxQ+v/0yjaMNFhrQmE0auoi8YQf117Z2h5bM8aTmGWhiCfRABz11GlUMm43mJIKt+x6L9c29z7mqqFouzA==
+  dependencies:
+    jsonwebtoken "^8.5.1"
+
 kareem@2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/kareem/-/kareem-2.4.1.tgz#7d81ec518204a48c1cb16554af126806c3cd82b0"
