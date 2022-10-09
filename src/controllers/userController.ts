@@ -37,7 +37,7 @@ const signUp = async (req: Request, res: Response) => {
         To confirm your account, please click on the following link:
         ${req.protocol}://${req.get(
         "host"
-      )}/api/v1/users/confirm/${confirmationToken}
+      )}/api/v1/user/confirm/${confirmationToken}
         If you did not request this, please ignore this email.
         
         Thanks
@@ -159,9 +159,45 @@ const getAllUsers = async (req: Request, res: Response) => {
   }
 };
 
+// confirm email 
+const confirmEmail = async (req: Request, res: Response) => {
+  try {
+    const { token } = req.params;
+    const user = await User.findOne({
+      confirmationToken: token,
+      confirmationTokenExpires: { $gt: Date.now() },
+    });
+    if (!user) {
+      return res.status(404).send({
+        message: "User not found",
+        status: 404,
+      });
+    }
+    user.status = "active";
+    // empty confirmation token & confirmation expires
+    user.confirmationToken = "";
+    user.confirmationTokenExpires = "";
+    await user.save();
+    res.status(200).json({
+      status: "success",
+      data: {
+        user,
+      },
+    });
+  } catch (error) {
+    res.status(500).send({
+      message: "Internal Server Error",
+      status: 500,
+      error: error,
+    });
+  }
+};
+
+
 export const userRouter = {
   signUp,
   login,
   getMe,
   getAllUsers,
+  confirmEmail,
 };

@@ -25,7 +25,7 @@ export interface IUser extends Document {
   image: string;
   status: string;
   confirmationToken: string;
-  confirmationTokenExpires: Date;
+  confirmationTokenExpires: Date | string;
   passWordChangedAt: Date;
   passWordResetToken: string;
   passWordResetExpires: Date;
@@ -93,7 +93,7 @@ const UserSchema = new Schema<IUser>(
       enum: {
         values: ["active", "inactive", "suspended"],
         message: "Status must be either active or inactive",
-        default: "active",
+        default: "inactive",
       },
     },
     confirmationToken: String,
