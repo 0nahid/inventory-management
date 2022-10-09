@@ -1,10 +1,13 @@
 import { Router } from "express";
 import { productsRouter } from "../../controllers/productController";
 import { uploader } from "../../middlewares/uploader";
+import { verifyManager } from "../../middlewares/verifyManager";
+import { verifyToken } from "../../middlewares/verifyToken";
+
 const router: Router = Router();
 
 router.get("/", productsRouter.getAllProducts);
-router.post("/", productsRouter.createProduct);
+router.post("/", verifyToken, verifyManager, productsRouter.createProduct);
 
 router.post(
   "/upload",

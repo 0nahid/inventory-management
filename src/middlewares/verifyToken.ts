@@ -1,9 +1,18 @@
 import { NextFunction, Request, Response } from "express";
-import jwt from "jwt-promisify";
+import jwt from "jsonwebtoken";
 const JWT_SECRET = process.env.JWT_SECRET || "";
-const veryfyToken = async (req: Request, res: Response, next: NextFunction) => {
+type MyToken = {
+  email: string;
+  role: string;
+  iat: number;
+  exp: number;
+};
+const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const token = req.headers?.authorization?.split(" ")[1];
+    // console.log(`token: ${token}`);
+    // console.log(`JWT_SECRET: ${JWT_SECRET}`);
+
     if (!token) {
       return res.status(401).send({
         message: "Access Denied",
@@ -11,8 +20,11 @@ const veryfyToken = async (req: Request, res: Response, next: NextFunction) => {
       });
     }
     // verify token
-    const decoded = await jwt.verify(token, JWT_SECRET);
+    // const decoded = jwt_decode(token);
+    const decoded = jwt.verify(token, JWT_SECRET) as MyToken;
     req.body.user = decoded;
+    // console.log(`decoded :`, decoded);
+
     next();
   } catch (error) {
     res.status(401).send({
@@ -22,4 +34,4 @@ const veryfyToken = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-export { veryfyToken };
+export { verifyToken };
