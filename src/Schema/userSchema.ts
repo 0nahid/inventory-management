@@ -1,8 +1,18 @@
-import { ObjectId, Schema } from "mongoose";
+import { Schema } from "mongoose";
 import PasswordValidator from "password-validator";
 import validator from "validator";
 
-const passwordSchema = new PasswordValidator().min(8).has().uppercase().has().lowercase().has().digits().has().not().spaces();
+const passwordSchema = new PasswordValidator()
+  .min(8)
+  .has()
+  .uppercase()
+  .has()
+  .lowercase()
+  .has()
+  .digits()
+  .has()
+  .not()
+  .spaces();
 
 export interface IUser extends Document {
   email: string;
@@ -14,6 +24,8 @@ export interface IUser extends Document {
   shippingAddress: string;
   image: string;
   status: string;
+  confirmationToken: string;
+  confirmationTokenExpires: Date;
   passWordChangedAt: Date;
   passWordResetToken: string;
   passWordResetExpires: Date;
@@ -39,7 +51,7 @@ const UserSchema = new Schema<IUser>(
         message: (props: any) => `${props.value} is not a valid password!`,
       },
     },
-    
+
     role: {
       type: String,
       required: true,
@@ -84,6 +96,8 @@ const UserSchema = new Schema<IUser>(
         default: "active",
       },
     },
+    confirmationToken: String,
+    confirmationTokenExpires: Date,
     passWordChangedAt: Date,
     passWordResetToken: String,
     passWordResetExpires: Date,
