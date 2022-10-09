@@ -54,12 +54,11 @@ const UserSchema = new Schema<IUser>(
 
     role: {
       type: String,
-      required: true,
       enum: {
         values: ["buyer", "store-manager", "admin"],
         message: "Role must be either buyer, store-manager or admin",
-        default: "buyer",
       },
+      default: "buyer",
     },
     firstName: {
       type: String,
@@ -93,8 +92,8 @@ const UserSchema = new Schema<IUser>(
       enum: {
         values: ["active", "inactive", "suspended"],
         message: "Status must be either active or inactive",
-        default: "inactive",
       },
+      default: "inactive",
     },
     confirmationToken: String,
     confirmationTokenExpires: Date,
