@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import { User } from "../models/userModel";
+import sendMailWIthGmail from "../utils/email";
 import { generateToken } from "./../utils/tokenGenerate";
 
 // create an user
@@ -14,6 +15,22 @@ const signUp = async (req: Request, res: Response) => {
       password: hashedPassword,
     };
     const user = await User.create(userData);
+
+    // send email
+    const mailData = {
+      to: user.email,
+      subject: "Welcome to the Inventory Management",
+      text: `
+        Hi ${user.firstName},
+        Welcome to the Inventory Management.
+        Your account has been created successfully.
+        Please login to your account.
+
+        Thanks
+      `,
+    };
+    sendMailWIthGmail(mailData);
+
     res.status(201).json({
       status: "success",
       data: {
@@ -132,5 +149,5 @@ export const userRouter = {
   signUp,
   login,
   getMe,
-  getAllUsers
+  getAllUsers,
 };
