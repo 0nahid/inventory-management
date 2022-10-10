@@ -53,19 +53,23 @@ const getSingleSupplier = async (req: Request, res: Response) => {
 // create a new brand
 const createSupplier = async (req: Request, res: Response) => {
   try {
-    const supplier = await SupplierModel.create(req.body);
+    // const supplier = await SupplierModel.create(req.body);
     /**
      * add the supplier to the brand
      */
+    const supplier = new SupplierModel(req.body);
 
-    console.log(`supplierId:`, supplier.id);
-    console.log(`filter`, req.body.brand.id);
-    const { _id: supplierId, brand } = supplier;
+    // console.log(`supplierId:`, supplier._id);
+    // console.log(`filter`, req.body.brand.id);
+    const { brand } = supplier;
+    // console.log(supplier);
+
     await BrandModel.updateOne(
       { _id: brand?.id },
-      { $push: { suppliers: supplierId } }
+      { $push: { suppliers: { id: supplier._id.toString() } } }
     );
-    
+
+    await supplier.save();
 
     res.status(201).send({
       message: "Supplier created",
@@ -73,6 +77,8 @@ const createSupplier = async (req: Request, res: Response) => {
       data: supplier,
     });
   } catch (error) {
+    console.log(error);
+
     res.status(500).send({
       message: "Internal Server Error",
       status: 500,

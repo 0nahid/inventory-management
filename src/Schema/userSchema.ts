@@ -51,6 +51,7 @@ const UserSchema = new Schema<IUser>(
         message: (props: any) => `${props.value} is not a valid password!`,
       },
     },
+  
 
     role: {
       type: String,
