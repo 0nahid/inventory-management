@@ -94,7 +94,7 @@ const getSingleStock = async (req: Request, res: Response) => {
     //     },
     //   },
     // ]);
-    console.log(req.params.id);
+    // console.log(req.params.id);
 
     res.status(200).json({
       status: "success",

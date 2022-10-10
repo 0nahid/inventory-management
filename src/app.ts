@@ -1,12 +1,13 @@
 import cors from "cors";
 import "dotenv/config";
 import express, { Application, Request, Response } from "express";
-import path from "path";
 const app: Application = express();
 
 /* middleware  */
 app.use(cors());
 app.use(express.json());
+// set the view engine to ejs
+app.set("view engine", "ejs");
 
 /* here will be all the imports routes */
 import brandRoute from "./routes/v1/brandRoute";
@@ -19,7 +20,7 @@ import userRoute from "./routes/v1/userRoute";
 
 /* here will be the all the routes */
 app.get("/", (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, "../public/index.html"));
+  res.render("../public/index.ejs");
 });
 
 /* Here is the User Routes */
