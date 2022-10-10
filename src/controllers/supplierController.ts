@@ -59,16 +59,23 @@ const createSupplier = async (req: Request, res: Response) => {
      */
     const supplier = new SupplierModel(req.body);
 
-    // console.log(`supplierId:`, supplier._id);
+    console.log(`supplierId:`, supplier._id);
     // console.log(`filter`, req.body.brand.id);
     const { brand } = supplier;
-    // console.log(supplier);
+    console.log(supplier);
 
     await BrandModel.updateOne(
       { _id: brand?.id },
-      { $push: { suppliers: { id: supplier._id.toString() } } }
+      {
+        $push: {
+          suppliers: {
+            name: supplier.name,
+            id: supplier._id,
+          },
+        },
+      }
     );
-
+    //  if brand update is successful then save the supplier to the database
     await supplier.save();
 
     res.status(201).send({
