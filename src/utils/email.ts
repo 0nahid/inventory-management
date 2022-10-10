@@ -39,8 +39,8 @@ const sendMailWIthGmail = async (data: EmailData) => {
 
   console.log(mailData);
   let info = await transporter.sendMail(mailData);
-  console.log("Message sent: %s", info.messageId);
-  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  // console.log("Message sent: %s", info.messageId);
+  // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 
   return info;
 };
