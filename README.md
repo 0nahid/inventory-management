@@ -84,11 +84,10 @@
 
 ```
 {
-  "email": "ex@gmail.com",
-  "password": "@123qweASD",
-  "role": "admin",
-  "firstName": "Ex",
-  "lastName": "Text",
-  "phoneNumber": "88016********"
+  "email": "valid_mail",
+  "password": "@123qasAQWE // pass format",
+  "firstName": "FirstName",
+  "lastName": "LastName",
+  "phoneNumber": "88016******** //valid phone number",
 }
 ```
