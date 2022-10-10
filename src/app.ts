@@ -20,7 +20,7 @@ import userRoute from "./routes/v1/userRoute";
 
 /* here will be the all the routes */
 app.get("/", (req: Request, res: Response) => {
-  res.render("../public/index.ejs");
+  res.render("../views/index");
 });
 
 /* Here is the User Routes */

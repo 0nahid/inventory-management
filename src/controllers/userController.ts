@@ -159,7 +159,7 @@ const getAllUsers = async (req: Request, res: Response) => {
   }
 };
 
-// confirm email 
+// confirm email
 const confirmEmail = async (req: Request, res: Response) => {
   try {
     const { token } = req.params;
@@ -169,7 +169,7 @@ const confirmEmail = async (req: Request, res: Response) => {
     });
     if (!user) {
       return res.status(404).send({
-        message: "User not found",
+        message: "Token is invalid or expired, please signup again",
         status: 404,
       });
     }
@@ -178,12 +178,7 @@ const confirmEmail = async (req: Request, res: Response) => {
     user.confirmationToken = "";
     user.confirmationTokenExpires = "";
     await user.save();
-    res.status(200).json({
-      status: "success",
-      data: {
-        user,
-      },
-    });
+    res.render("confirmation", { user });
   } catch (error) {
     res.status(500).send({
       message: "Internal Server Error",
@@ -192,7 +187,6 @@ const confirmEmail = async (req: Request, res: Response) => {
     });
   }
 };
-
 
 export const userRouter = {
   signUp,
